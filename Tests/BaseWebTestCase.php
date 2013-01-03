@@ -1,6 +1,6 @@
 <?php
 
-namespace MrM\MrMIsoTestBundle\Tests;
+namespace MrM\IsoTestBundle\Tests;
 
 use Symfony\Bundle\FrameworkBundle\Test\WebTestCase;
 use Symfony\Component\Yaml\Yaml;
