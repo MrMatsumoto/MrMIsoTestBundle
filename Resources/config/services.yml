@@ -1,0 +1,7 @@
+parameters:
+#    ms_iso_test.example.class: MS\IsoTestBundle\Example
+
+services:
+#    ms_iso_test.example:
+#        class: %ms_iso_test.example.class%
+#        arguments: [@service_id, "plain_value", %parameter%]
