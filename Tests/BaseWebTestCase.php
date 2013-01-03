@@ -31,6 +31,8 @@ class BaseWebTestCase extends WebTestCase {
     }
 
     /**
+     * return the EntityManager of the current kernel or kernel of the given $client
+     * 
      * @param \Symfony\Component\HttpKernel\Client $client
      * @return \Doctrine\ORM\EntityManager
      */
@@ -40,11 +42,19 @@ class BaseWebTestCase extends WebTestCase {
         return $client->getContainer()->get('doctrine')->getEntityManager();
     }
 
-    protected static function callMethod($obj, $name, array $args) {
-        $class = new \ReflectionClass($obj);
-        $method = $class->getMethod($name);
+    /**
+     * call a protected or private method on $object
+     * 
+     * @param Object $object
+     * @param string $methodName
+     * @param array $args
+     * @return 
+     */
+    protected static function callMethod($object, $methodName, array $args) {
+        $class = new \ReflectionClass($object);
+        $method = $class->getMethod($methodName);
         $method->setAccessible(true);
-        return $method->invokeArgs($obj, $args);
+        return $method->invokeArgs($object, $args);
     }   
     
     /**
@@ -60,6 +70,15 @@ class BaseWebTestCase extends WebTestCase {
         parent::setUp();
     }
 
+    /**
+     * load the fixtures reside in ./fixtures/$fixtureName into db. if you want to
+     * use in combination with a client you have to pass the client, else the standard
+     * kernel will be used.
+     * 
+     * @param string $fixtureName
+     * @param \Symfony\Component\HttpKernel\Client $client
+     * @throws \Exception 
+     */
     public function loadFixture($fixtureName, $client = null) {
         $references = array();
         
