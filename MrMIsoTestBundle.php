@@ -1,6 +1,6 @@
 <?php
 
-namespace MS\IsoTestBundle;
+namespace MrM\IsoTestBundle;
 
 use Symfony\Component\HttpKernel\Bundle\Bundle;
 
