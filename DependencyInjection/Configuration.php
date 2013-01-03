@@ -1,6 +1,6 @@
 <?php
 
-namespace MS\IsoTestBundle\DependencyInjection;
+namespace MrM\IsoTestBundle\DependencyInjection;
 
 use Symfony\Component\Config\Definition\Builder\TreeBuilder;
 use Symfony\Component\Config\Definition\ConfigurationInterface;

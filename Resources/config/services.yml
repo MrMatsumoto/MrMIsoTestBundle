@@ -1,5 +1,5 @@
 parameters:
-#    ms_iso_test.example.class: MS\IsoTestBundle\Example
+#    ms_iso_test.example.class: MrM\IsoTestBundle\Example
 
 services:
 #    ms_iso_test.example:
