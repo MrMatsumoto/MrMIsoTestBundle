@@ -1,5 +1,5 @@
 {
-    "name": "mrm/mrm-iso-test-bundle",
+    "name": "mrm/isotest-bundle",
     "description": "Base TestCase for Isolated functional Tests.",
     "keywords": ["testing","functional test"],
     "type": "symfony-bundle",
@@ -15,5 +15,4 @@
     "autoload": {
         "psr-0": { "MrM\\IsoTestBundle": "" }
     },
-    "target-dir": "MrM/IsoTestBundle"
 }
