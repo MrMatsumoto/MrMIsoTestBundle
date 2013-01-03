@@ -5,7 +5,7 @@ namespace MrM\IsoTestBundle\Tests;
 use Symfony\Bundle\FrameworkBundle\Test\WebTestCase;
 use Symfony\Component\Yaml\Yaml;
 
-require_once(__DIR__ . "/../../../../app/AppKernel.php");
+require_once(__DIR__ . "/../../../../../../app/AppKernel.php");
 
 class BaseWebTestCase extends WebTestCase {
 
