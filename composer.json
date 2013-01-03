@@ -1,0 +1,19 @@
+{
+    "name": "mrm/mrm-iso-test-bundle",
+    "description": "Base TestCase for Isolated functional Tests.",
+    "keywords": ["testing","functional test"],
+    "type": "symfony-bundle",
+    "authors": [
+        {
+            "name": "Michael Schidlowski",
+            "email": "michael.schidlowski@gmail.com"
+        }
+    ],
+    "require": {
+        "symfony/framework-bundle": "2.*"
+    },
+    "autoload": {
+        "psr-0": { "MrM\\IsoTestBundle": "" }
+    },
+    "target-dir": "MrM/IsoTestBundle"
+}
