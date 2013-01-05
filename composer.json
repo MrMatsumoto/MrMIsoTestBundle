@@ -15,5 +15,10 @@
     "autoload": {
         "psr-0": { "MrM\\IsoTestBundle": "" }
     },
-    "target-dir": "MrM/IsoTestBundle"
+    "target-dir": "MrM/IsoTestBundle",
+    "extra": {
+        "branch-alias": {
+            "dev-master": "0.7.x-dev"
+        }
+    }
 }
