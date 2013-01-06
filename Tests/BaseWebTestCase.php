@@ -94,30 +94,40 @@ class BaseWebTestCase extends WebTestCase {
             foreach ($modelData['fixtures'] as $name => $data) {
                 if (key_exists($name, $references))
                     throw new \Exception("Fixture with name '$name' already exists in fixture file $fixtureName");
-                foreach ($data as $fixture) {
-                    $model = new $modelClass();
-                    foreach ($fixture as $attributeName => $value) {
-                        $values = $value;
-                        if (!is_array($values)) {
-                            $values = array($values);
+
+                $model = new $modelClass();
+                
+                // set the models attributes
+                if (is_array($data)) {
+                    foreach ($data as $fixture) {
+                        foreach ($fixture as $attributeName => $value) {
+                            $values = $value;
+                            if (!is_array($values)) {
+                                $values = array($values);
+                            }
+                            foreach ($values as $k => $v) {
+                                if (substr($v, 0, 2) == "@@") {
+                                    $ref = $references[substr($v, 2, strlen($v) - 2)];
+                                    $values[$k] = $ref;
+                                } else {
+                                    if (preg_match("/^<\!php (.*) \!>/", $v, $matches)) {
+                                        $values[$k] = eval($matches[1]);
+                                    }
+                                }
+                            }
+                            $methodName = "set" . ucfirst($attributeName);
+
+                            if (is_array($value))
+                                $model->$methodName($values);
+                            else
+                                $model->$methodName(array_pop($values));
                         }
-                        foreach ($values as $k => $v) {
-                            if (substr($v, 0, 2) == "@@") {
-                                $ref = $references[substr($v, 2, strlen($v) - 2)];
-                                $values[$k] = $ref;
-                            }                            
-                        }
-                        $methodName = "set" . ucfirst($attributeName);
-                        
-                        if (is_array($value))
-                            $model->$methodName($values);
-                        else
-                            $model->$methodName(array_pop($values));
-                    }
-                    $this->getEntityManager($client)->persist($model);
-                    $this->getEntityManager($client)->flush();                    
-                    $references[$name] = $model;
+                    }            
                 }            
+                
+                $this->getEntityManager($client)->persist($model);
+                $this->getEntityManager($client)->flush();                    
+                $references[$name] = $model;
             }            
         }
     }
