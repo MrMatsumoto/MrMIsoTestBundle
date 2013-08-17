@@ -60,7 +60,7 @@ class BaseWebTestCase extends WebTestCase {
     /**
      * {@inheritDoc}
      */
-    public function setUp() {
+    protected function setUp() {
         $kernel = new \AppKernel("test", true);
         $kernel->boot();
         $this->application = new \Symfony\Bundle\FrameworkBundle\Console\Application($kernel);
